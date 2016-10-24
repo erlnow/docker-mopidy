@@ -1,6 +1,7 @@
 FROM debian:jessie
 
-MAINTAINER Werner Beroux <werner@beroux.com>
+# MAINTAINER Werner Beroux <werner@beroux.com>
+MAINTAINER erlnow <erlestau@gmail.com>
 
 # Default configuration
 COPY mopidy.conf /var/lib/mopidy/.config/mopidy/mopidy.conf
@@ -10,6 +11,7 @@ COPY entrypoint.sh /entrypoint.sh
 
 # Official Mopidy install for Debian/Ubuntu along with some extensions
 # (see https://docs.mopidy.com/en/latest/installation/debian/ )
+# added Mopidy-Scrobbler
 RUN set -ex \
  && apt-get update \
  && DEBIAN_FRONTEND=noninteractive apt-get install -y \
@@ -31,6 +33,7 @@ RUN set -ex \
         Mopidy-Moped \
         Mopidy-GMusic \
         Mopidy-YouTube \
+        Mopidy-Scrobbler \
  && apt-get purge --auto-remove -y \
         curl \
         gcc \
